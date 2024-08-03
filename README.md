@@ -1,1 +1,1 @@
-# wolaita-bible-website
+# wolaita bible website
