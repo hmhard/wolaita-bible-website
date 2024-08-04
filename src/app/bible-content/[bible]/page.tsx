@@ -1,29 +1,29 @@
 "use client"
 
-import { bibles } from "@/data/bible_names";
+import BibleName from "@/components/BibleName";
+import Chapter from "@/components/Chapter";
+import Settings from "@/components/Settings";
 import { getRandomParagraphs } from "@/utils/random_string_generator";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-const paragraphCount = 3;
+const paragraphCount = 53;
 const sentenceCount = 5;
 const wordsPerSentence = 10;
-interface FontParams  {
+export interface FontParams {
   fontSize: number;
 
 }
 export default function BibleContent({ params }: Readonly<{ params: { bible: string } }>) {
 
-
-  //generate random length of  array of numbers starting from 1
   const [paragraphs, setParagraphs] = useState<string[]>([]);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [bibleName] = useState(params.bible);
-  const [fontParams, setFontParams] = useState<FontParams>({fontSize:1});
+  const [fontParams, setFontParams] = useState<FontParams>({ fontSize: 1 });
   const router = useRouter();
 
-  const chapters = useMemo(()=>Array.from({ length: Math.floor(Math.random() * 100) }, (_, i) => i + 1)
-,[bibleName]);
+  const chapters = useMemo(() => Array.from({ length: Math.floor(Math.random() * 100) }, (_, i) => i + 1)
+    , [bibleName]);
 
 
   useEffect(() => {
@@ -41,76 +41,60 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
   }
 
 
-
   const handleOpenChapter = (chapter: number): void => {
     setSelectedChapter(chapter);
   }
 
-  function handleOpenBibleName(bible: any): void {
+  const handleOpenBibleName = (bible: any): void => {
 
     router.push(`/bible-content/${bible}`);
 
   }
 
+  const handleSelectRandomChapter = (): void => {
+    let rand = Math.floor(Math.random() * Math.floor(chapters.length));
+    handleOpenChapter(chapters[rand - 1])
+    console.log(rand);
+  }
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center pt-10 px-5">
-      <button className=" rounded-lg hover:bg-sky-300">
-        Back
-      </button>
+    <main className="flex min-h-screen flex-col items-center pt-2 px-4">
+
       <div className="grid grid-cols-12 gap-2 pb-5">
         <div className=" col-span-3">
-          <div className="grid grid-cols-2 gap-2 px-4">
-            {bibles.old_testaments.map(bible =>
-              <div key={bible} onClick={() => handleOpenBibleName(bible)}>
-                {bibleName === bible ?
-
-                  <div className="py-2 px-3 bg-red-400 rounded-lg hover:bg-red-200 hover:text-white">
-                    {bible}
-                  </div>
-                  : <div className="py-2 px-3 bg-slate-50 rounded-lg hover:bg-red-200 hover:text-white">
-                    {bible}
-                  </div>}
-              </div>
-            )}
-          </div>
-
+          <BibleName selectedBible={bibleName} handleOpenBibleName={handleOpenBibleName} />
         </div>
-        <div className=" col-span-7">
+        <div className=" col-span-8">
 
-         
           <div className="grid grid-cols-10 gap-1 pb-4">
-
-            {chapters.map(chapter =>
-              <div key={chapter} onClick={() => handleOpenChapter(chapter)}>
-                {selectedChapter === chapter ?
-                  <div className="p-1   text-sm bg-red-400 text-center rounded-lg hover:bg-red-200 hover:text-white">
-                    {chapter}
-                  </div> :
-                  <div className="p-1 text-center   text-sm bg-slate-200 rounded-lg hover:bg-red-200 hover:text-white">
-                    {chapter}
-                  </div>
-
-                }
-
-              </div>
-            )}
-
+            <div onClick={() => router.push('/')} className="p-1   text-sm bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
+              Back
+            </div>
+            <Chapter chapters={chapters} selectedChapter={selectedChapter} handleOpenChapter={handleOpenChapter} />
           </div>
+
           <div className="text-2xl pb-2">{bibleName} {' '} {selectedChapter}</div>
-          {paragraphs.map((p: string, index: number) =>
+          {paragraphs.map((paragraph: string, index: number) =>
             <div className="pb-1" key={`index-'${index + 1}`}>
               <span>{index + 1}. {' '}</span>
-              <span className={`text-${fontParams.fontSize}xl`}>{p}</span>
+              <span className={`text-${fontParams.fontSize}xl`}>{paragraph}</span>
             </div>)
           }
           <div className="flex space-x-96 pt-3">
             {selectedChapter !== 1 ? <button onClick={handlePreviousChapter} className="rounded-lg hover:bg-sky-300 py-1 px-10 bg-sky-300  text-white">
-              Prev
-            </button>: <span className="py-1 px-10"></span>}
+              Shemppuwaa {selectedChapter - 1}
+            </button> : <span className="py-1 px-10"></span>}
             {chapters.length !== selectedChapter && <button onClick={handleNextChapter} className='rounded-lg  hover:bg-sky-300 py-1 px-10 bg-sky-300  text-white'>
-              Next
+              Shemppuwaa {selectedChapter + 1}
             </button>}
           </div>
+        </div>
+        <div className=" col-span-1">
+          <Settings
+            setFontParams={setFontParams}
+            handleSelectRandomChapter={handleNextChapter}
+          />
         </div>
       </div>
     </main>
