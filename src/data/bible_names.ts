@@ -1,4 +1,4 @@
-export const bibles = ['Genesis',
+export const bibles = {'old_testaments':['Genesis',
     'Exodus',
     'Leviticus',
     'Numbers',
@@ -37,9 +37,8 @@ export const bibles = ['Genesis',
     'Haggai',
     'Zechariah',
     'Malachi',
-   ];
-   //new testament bible names array
-   export const newTestamentBibles = [
+   ],
+   'new_testaments' : [
     'Matthew',
     'Mark',
     'Luke',
@@ -67,6 +66,6 @@ export const bibles = ['Genesis',
     '3 John',
     'Jude',
     'Revelation',
-   ];
+   ]};
    
   

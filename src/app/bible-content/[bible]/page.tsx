@@ -60,7 +60,7 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
       <div className="grid grid-cols-12 gap-2 pb-5">
         <div className=" col-span-3">
           <div className="grid grid-cols-2 gap-2 px-4">
-            {bibles.map(bible =>
+            {bibles.old_testaments.map(bible =>
               <div key={bible} onClick={() => handleOpenBibleName(bible)}>
                 {bibleName === bible ?
 
