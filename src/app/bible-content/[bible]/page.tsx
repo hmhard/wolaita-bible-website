@@ -62,35 +62,35 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
     <main className="flex min-h-screen flex-col items-center pt-2 px-4">
 
       <div className="grid grid-cols-12 gap-2 pb-5">
-        <div className=" col-span-3">
+        <div className="hidden md:col-span-3">
           <BibleName selectedBible={bibleName} handleOpenBibleName={handleOpenBibleName} />
         </div>
-        <div className=" col-span-8">
+        <div className=" col-span-12 md:col-span-8">
 
           <div className="grid grid-cols-10 gap-1 pb-4">
-            <div onClick={() => router.push('/')} className="p-1   text-sm bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
+            <div onClick={() => router.push('/')} className="p-1  text-sm bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
               Back
             </div>
             <Chapter chapters={chapters} selectedChapter={selectedChapter} handleOpenChapter={handleOpenChapter} />
           </div>
 
-          <div className="text-2xl pb-2">{bibleName} {' '} {selectedChapter}</div>
+          <div className="text-2xl pb-2 text-center md:text-start">{bibleName} {' '} {selectedChapter}</div>
           {paragraphs.map((paragraph: string, index: number) =>
             <div className="pb-1" key={`index-'${index + 1}`}>
               <span>{index + 1}. {' '}</span>
               <span className={`text-${fontParams.fontSize}xl`}>{paragraph}</span>
             </div>)
           }
-          <div className="flex space-x-96 pt-3">
-            {selectedChapter !== 1 ? <button onClick={handlePreviousChapter} className="rounded-lg hover:bg-sky-300 py-1 px-10 bg-sky-300  text-white">
+          <div className="flex  md:space-x-96 pt-3">
+            {selectedChapter !== 1 ? <button onClick={handlePreviousChapter} className="rounded-lg mr-3 hover:bg-sky-300 py-1 px-5  bg-sky-300  text-white">
               Shemppuwaa {selectedChapter - 1}
-            </button> : <span className="py-1 px-10"></span>}
-            {chapters.length !== selectedChapter && <button onClick={handleNextChapter} className='rounded-lg  hover:bg-sky-300 py-1 px-10 bg-sky-300  text-white'>
+            </button> : <span className="py-1 px-10 mr-3"></span>}
+            {chapters.length !== selectedChapter && <button onClick={handleNextChapter} className='rounded-lg  hover:bg-sky-300 py-1 px-5 bg-sky-300  text-white'>
               Shemppuwaa {selectedChapter + 1}
             </button>}
           </div>
         </div>
-        <div className=" col-span-1">
+        <div className="hidden md:col-span-1">
           <Settings
             setFontParams={setFontParams}
             handleSelectRandomChapter={handleNextChapter}
