@@ -68,9 +68,9 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
         <div className="col-span-12 md:col-span-8">
 
           <div className="grid grid-cols-10 gap-1 pb-4">
-            <div onClick={() => router.push('/')} className="p-1  text-sm shadow-md bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
+            <button onClick={() => router.push('/')} className="p-1  text-sm shadow-md bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
               Back
-            </div>
+            </button>
             <Chapter chapters={chapters} selectedChapter={selectedChapter} handleOpenChapter={handleOpenChapter} />
           </div>
 
