@@ -7,7 +7,7 @@ import { getRandomParagraphs } from "@/utils/random_string_generator";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-const paragraphCount = 53;
+const paragraphCount = 5;
 const sentenceCount = 5;
 const wordsPerSentence = 10;
 export interface FontParams {
@@ -61,11 +61,11 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
   return (
     <main className="flex min-h-screen flex-col items-center pt-2 px-4">
 
-      <div className="grid grid-cols-12 gap-2 pb-5">
-        <div className="hidden md:col-span-3">
+      <div className="grid grid-cols-12 gap-1 pb-5">
+        <div className="max-sm:hidden  md:col-span-3">
           <BibleName selectedBible={bibleName} handleOpenBibleName={handleOpenBibleName} />
         </div>
-        <div className=" col-span-12 md:col-span-8">
+        <div className="col-span-12 md:col-span-8">
 
           <div className="grid grid-cols-10 gap-1 pb-4">
             <div onClick={() => router.push('/')} className="p-1  text-sm bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
@@ -90,7 +90,7 @@ export default function BibleContent({ params }: Readonly<{ params: { bible: str
             </button>}
           </div>
         </div>
-        <div className="hidden md:col-span-1">
+        <div className="max-sm:hidden  md:col-span-1">
           <Settings
             setFontParams={setFontParams}
             handleSelectRandomChapter={handleNextChapter}
