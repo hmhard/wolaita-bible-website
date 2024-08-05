@@ -18,7 +18,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-2 rounded-lg shadow-lg px-2 pb-6 pt-2">
 
             {bibles.old_testaments.map(bible =>
-              <div key={bible} onClick={() => handleOpenBibleName(bible)} className="py-2 px-2 bg-slate-50 rounded-lg hover:bg-red-200 hover:text-white">{bible}</div>
+              <button key={bible} onClick={() => handleOpenBibleName(bible)} className="py-2 px-2 bg-slate-50 rounded-lg shadow-md hover:bg-red-200 hover:text-white">{bible}</button>
             )}
 
           </div>
@@ -28,7 +28,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-2 rounded-lg shadow-lg px-2 pb-6 pt-2">
 
             {bibles.new_testaments.map(bible =>
-              <div key={bible} onClick={() => handleOpenBibleName(bible)} className="py-2 px-2 bg-slate-50 rounded-lg hover:bg-red-200 hover:text-white">{bible}</div>
+              <button key={bible} onClick={() => handleOpenBibleName(bible)} className="py-2 px-2 bg-slate-50 rounded-lg hover:bg-red-200 shadow-md hover:text-white">{bible}</button>
             )}
 
           </div>

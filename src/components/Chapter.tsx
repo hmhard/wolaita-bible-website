@@ -7,10 +7,10 @@ export default function Chapter({chapters, selectedChapter, handleOpenChapter}: 
 
     return  <>{chapters.map(chapter =>
 
-      <div key={chapter} onClick={() => handleOpenChapter(chapter)} className={`p-1 text-center text-sm ${selectedChapter === chapter ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
+      <button key={chapter} onClick={() => handleOpenChapter(chapter)} className={`py-1 text-center shadow-md text-sm ${selectedChapter === chapter ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
         {chapter}
 
-      </div>
+      </button>
     )}
     </>
 }
