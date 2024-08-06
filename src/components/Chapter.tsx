@@ -1,16 +1,22 @@
 import { bibles } from "@/data/bible_names";
+import { Chapter } from "@/types/types";
 import { useMemo } from "react";
+type ChapterType = {
+  chapters: Chapter[],
+  selectedChapter: Chapter | undefined,
+  handleOpenChapter: any
+}
 
-export default function Chapter({chapters, selectedChapter, handleOpenChapter}: {chapters: number[],selectedChapter:number , handleOpenChapter: any}){
+export default function ChapterComponent({ chapters, selectedChapter, handleOpenChapter }: ChapterType) {
 
 
 
-    return  <>{chapters.map(chapter =>
+  return <>{chapters.map(chapter =>
 
-      <button key={chapter} onClick={() => handleOpenChapter(chapter)} className={`py-1 text-center shadow-md text-sm ${selectedChapter === chapter ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
-        {chapter}
+    <button key={chapter.id} onClick={() => handleOpenChapter(chapter)} className={`py-1 text-center shadow-md text-sm ${selectedChapter?.id === chapter.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
+      {chapter.chapter}
 
-      </button>
-    )}
-    </>
+    </button>
+  )}
+  </>
 }
