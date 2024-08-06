@@ -3,11 +3,11 @@
 
 ### Books
 
-![Books](./public/images/bible-books.PNG)
+![Books](./public/bible-books.PNG)
 
 ### content
 
-![Books](./public/images/bible-content.PNG)
+![Books](./public/bible-content.PNG)
 ## Getting Started
 
 ```bash
