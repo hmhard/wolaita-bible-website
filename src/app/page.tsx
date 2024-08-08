@@ -6,12 +6,13 @@ type BookNameType = {
   books: Book[] | undefined,
 }
 const BookName = ({ books, testament, }: BookNameType) => {
+  const START_CHAPTER = 1;
   return <div className="col-span-12 md:col-auto">
-    <div className="text-4xl  md:text-2xl text-red-400 rounded-lg underline text-center  pb-3">{testament}</div>
-    <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-2 rounded-lg shadow-lg px-2 pb-6 pt-2">
+    <div className="text-4xl  md:text-4xl text-red-400 rounded-lg underline text-center pb-3">{testament}</div>
+    <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-2 rounded-lg shadow-lg px-1 pb-6 pt-2">
 
       {books?.map(book =>
-        <Link key={book.id} href={`/bible-content/${book.id}/chapter/1`} className="py-2 px-2 bg-slate-50 rounded-lg shadow-md hover:bg-red-200 hover:text-white">{book.name}</Link>
+        <Link key={book.id} href={`/bible-content/${book.id}/chapter/${START_CHAPTER}`} className="py-1 px-1 bg-slate-50 rounded-lg shadow-md text-center hover:bg-red-200  overflow-hidden text-2xl hover:text-white">{book.name}</Link>
       )}
 
     </div>

@@ -22,20 +22,20 @@ export default async function BibleContent({ params }: Readonly<{ params: { bibl
         <div className="col-span-12 md:col-span-8">
 
           <div className="grid grid-cols-10 gap-1 pb-4">
-            <Link href={'/'} className="p-1  text-sm shadow-md bg-slate-200 text-center rounded-lg hover:bg-red-200 hover:text-white">
+            <Link href={'/'} className="py-1 text-center shadow-md text-lg font-bold bg-slate-100 rounded-lg hover:bg-red-200 hover:text-white">
               Back
             </Link>
             <ChapterComponent chapters={chapters} selectedChapter={selectedChapter} />
           </div>
 
-          <div className="text-2xl pb-2 text-center md:text-start">{selectedChapter?.book.name} {' '} {selectedChapter?.chapter}</div>
+          <div className="text-3xl pb-2 text-center md:text-start">{selectedChapter?.book.name} {' '} {selectedChapter?.chapter}</div>
           {book_contents.map((content) =>
-            <div className="pb-1" key={`index-'${content.id}`}>
+            <div className="pb-1 text-2xl" key={`index-'${content.id}`}>
               <span>{content.verse}. {' '}</span>
-              <span className={`text-base`}>{content.text}</span>
+              <span className={`text-2xl`}>{content.text}</span>
             </div>)
           }
-          <div className="flex  md:space-x-96 pt-3">
+          <div className="flex  md:space-x-96 pt-3 text-2xl">
             {selectedChapter?.chapter !== "1" ? <Link href={`/bible-content/${params.bible}/chapter/${Number(selectedChapter?.chapter ?? 0) - 1}`} className="rounded-lg mr-3 hover:bg-sky-300 py-1 px-5  bg-sky-300  text-white">
               Shemppuwaa {Number(selectedChapter?.chapter ?? 0) - 1}
             </Link> : <span className="py-1 px-10 mr-3"></span>}
@@ -44,9 +44,7 @@ export default async function BibleContent({ params }: Readonly<{ params: { bibl
             </Link>}
           </div>
         </div>
-        <div className="max-sm:hidden  md:col-span-1">
         
-        </div>
       </div>
     </main>
   );
