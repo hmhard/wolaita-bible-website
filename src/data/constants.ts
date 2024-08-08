@@ -1,6 +1,6 @@
 import { Testament } from "@/types/types";
 
-export const baseUrl: string = 'https://api.samueltoma.com';
+export const baseUrl: string =  process.env.BASE_URL || '';
 
 export const testaments:Testament[] =
 [
