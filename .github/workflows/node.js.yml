@@ -10,14 +10,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      BASE_URL: ${{env.BASE_URL}}
     strategy:
       matrix:
         node-version: [18.x, 20.x]
 
     steps:
-    - env:
-        BASE_URL: ${{env.BASE_URL}}
+
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
