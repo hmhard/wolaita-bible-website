@@ -12,7 +12,7 @@ export default function ChapterComponent({ chapters, selectedChapter }: Readonly
 
   return <>{chapters.map(chapter =>
 
-    <Link key={chapter.id} href={`/bible-content/${chapter.book.id}/chapter/${chapter.chapter}`} className={`py-1 text-center shadow-md text-sm ${selectedChapter?.id === chapter.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
+    <Link key={chapter.id} href={`/bible-content/${chapter.book.id}/chapter/${chapter.chapter}`} className={` text-center shadow-md text-lg font-bold ${selectedChapter?.id === chapter.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 hover:text-white`}>
       {chapter.chapter}
 
     </Link>
