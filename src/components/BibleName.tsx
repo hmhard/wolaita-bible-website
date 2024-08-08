@@ -1,50 +1,44 @@
-import { bibles } from "@/data/bible_names";
+
 import TestamentText from "./TestamentText";
-import useSWR from "swr";
 import { Book, Chapter } from "@/types/types";
-import { fetcher } from "@/utils/fetcher";
+import Link from "next/link";
+import { baseUrl, testaments } from "@/data/constants";
+import { Fragment } from "react";
 type BibleNameType = {
     selectedChapter: Chapter | undefined,
-    handleOpenBibleName: any
 }
 
 type BookButtonType = {
-    handleOpenBibleName: any,
     book: Book,
     selectedChapter: Chapter | undefined,
 
 }
 
-const BookButton = ({ book, selectedChapter, handleOpenBibleName }: BookButtonType) => {
+const BookButton = ({ book, selectedChapter }: BookButtonType) => {
 
-    return <button key={book.id} onClick={() => handleOpenBibleName(book.id)} className={`py-1 px-3 ${selectedChapter?.bible_name_id === book.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 shadow-lg hover:text-white`}>
+    return <Link key={book.id} href={`/bible-content/${book.id}/chapter/1`} className={`py-1 px-3 ${selectedChapter?.bible_name_id === book.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 shadow-lg hover:text-white`}>
         {book.name}
-    </button>
+    </Link>
 }
 
 
-export default function BibleName({ selectedChapter, handleOpenBibleName }: BibleNameType) {
+export default async function BibleName({ selectedChapter }: Readonly<BibleNameType>) {
 
-    const { data: books, isLoading } = useSWR<Book[]>('/bible/books', fetcher);
+   
+    const  books:Book[]= await(await(fetch(`${baseUrl}/bible/books`))).json();;
 
     return <div className="grid grid-cols-2 gap-1 px-4">
-        <TestamentText text="Old Testament" />
-        {books?.filter(b => b.testament_id === 1).map(bible =>
+        {testaments.map(testament=>{
+
+        return <Fragment key={testament.id}><TestamentText text={testament.name}/>
+        {books?.filter(b => b.testament_id === testament.id).map(book =>
             <BookButton
-                key={bible.id}
-                book={bible}
+                key={book.id}
+                book={book}
                 selectedChapter={selectedChapter}
-                handleOpenBibleName={handleOpenBibleName}
             />
         )}
-        <TestamentText text="New Testament" />
-        {books?.filter(b => b.testament_id === 2).map(bible =>
-            <BookButton
-                key={bible.id}
-                book={bible}
-                selectedChapter={selectedChapter}
-                handleOpenBibleName={handleOpenBibleName}
-            />
-        )}
+        </Fragment>})}
+      
     </div>
 }

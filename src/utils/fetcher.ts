@@ -1,5 +1,6 @@
-export  const fetcher = async(url:string) => {
+export const fetcher = async (url:string) => {
 
-   var response = await fetch(`https://api.samueltoma.com${url}`);
-   return response.json();
+   let response = await fetch(`https://api.samueltoma.com${url}`);
+   const data = await response.json();
+   return data;
 }
