@@ -9,10 +9,10 @@ export interface Book{
     testament: Testament;
   }
 export interface Testament{
-    id: string;
+    id: number;
     name: string;
-    created_at: string;
-    updated_at: string; 
+    created_at?: string;
+    updated_at?: string; 
   }
   export interface Chapter{
     id: number;
