@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model WContent {
+  id         Int    @id @default(autoincrement())
+  bible_id   Int
+  chapter_id Int
+  content_id Int
+  verse      String
+  text       String
+  book       BibleName @relation(fields: [bible_id], references: [id])
+}
+
+model Testament {
+  id         Int    @id @default(autoincrement())
+  name   String
+  books BibleName[]
+   @@map("testaments")
+
+}
+model BibleName {
+  id         Int    @id @default(autoincrement())
+  name   String
+  previous_id Int
+  next_id Int
+  testament_id Int
+  chapters WContent[]
+  testament Testament @relation(fields: [testament_id], references: [id])
+   @@map("bible_name")
+}
