@@ -4,6 +4,7 @@ import ChapterComponent from "@/components/Chapter";
 import { baseUrl } from "@/data/constants";
 import { BookContent, Chapter } from "@/types/types";
 import Link from "next/link";
+import BookChapter from "./BookChapter";
 
 
 export default async function BibleContent({ params }: Readonly<{ params: { bible: string, chapter:number } }>) {
@@ -28,7 +29,7 @@ export default async function BibleContent({ params }: Readonly<{ params: { bibl
             <ChapterComponent chapters={chapters} selectedChapter={selectedChapter} />
           </div>
 
-          <div className="text-3xl pb-2 text-center md:text-start">{selectedChapter?.book.name} {' '} {selectedChapter?.chapter}</div>
+          <BookChapter name={selectedChapter?.book.name} chapter={selectedChapter?.chapter} />
           {book_contents.map((content) =>
             <div className="pb-1 text-2xl" key={`index-'${content.id}`}>
               <span>{content.verse}. {' '}</span>
