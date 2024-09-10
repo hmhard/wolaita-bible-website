@@ -16,7 +16,7 @@ type BookButtonType = {
 
 const BookButton = ({ book, selectedChapter }: BookButtonType) => {
 
-    return <Link key={book.id} href={`/bible-content/${book.id}/chapter/1`} className={`py-1 px-1 text-center text-2xl overflow-clip ${selectedChapter?.bible_name_id === book.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 shadow-lg hover:text-white`}>
+    return <Link key={book.id} href={`/bible-content/${book.id}/chapter/1`} className={`py-1 px-1 text-center text-2xl overflow-clip ${selectedChapter?.bible_id === book.id ? 'bg-red-400' : 'bg-slate-100'} rounded-lg hover:bg-red-200 shadow-lg hover:text-white`}>
         {book.name}
     </Link>
 }

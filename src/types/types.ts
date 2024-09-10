@@ -16,8 +16,8 @@ export interface Testament{
   }
   export interface Chapter{
     id: number;
-    bible_name_id: number;
-    chapter: string;
+    bible_id: number;
+    chapter_id: number;
     created_at: string;
     updated_at: string; 
     book: Book;
