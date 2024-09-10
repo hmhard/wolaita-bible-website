@@ -1,9 +1,1 @@
-{
-    "builds": [
-        {
-            "src": "package.json",
-            "use": "@vercel/node"
-        }
-    ],
-    "ignoreCommand": "test -f ./skip-build.txt"
-}
+
