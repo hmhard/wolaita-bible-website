@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../../../../prisma/prisma-client";
 
 
 export async function GET(_req: Request, { params }: { params: { book: string } }) {
+
   
     const { book:bookId } = params;
     const chapters = await prisma.wContent.findMany({

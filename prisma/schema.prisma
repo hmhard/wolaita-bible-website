@@ -3,34 +3,72 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model WContent {
-  id         Int    @id @default(autoincrement())
+  mainid String @id @default(auto()) @map("_id") @db.ObjectId
+
+  id         Int       @unique
   bible_id   Int
   chapter_id Int
   content_id Int
   verse      String
   text       String
   book       BibleName @relation(fields: [bible_id], references: [id])
+
+  @@map("wol_content")
 }
 
 model Testament {
-  id         Int    @id @default(autoincrement())
-  name   String
-  books BibleName[]
-   @@map("testaments")
+  mainid String @id @default(auto()) @map("_id") @db.ObjectId
 
+  id    Int         @unique
+  name  String
+  books BibleName[]
+
+  @@map("testaments")
 }
+
 model BibleName {
-  id         Int    @id @default(autoincrement())
-  name   String
-  previous_id Int
-  next_id Int
+  mainid String @id @default(auto()) @map("_id") @db.ObjectId
+
+  id           Int        @unique
+  name         String
+  previous_id  Int
+  next_id      Int
   testament_id Int
-  chapters WContent[]
-  testament Testament @relation(fields: [testament_id], references: [id])
-   @@map("bible_name")
+  chapters     WContent[]
+  testament    Testament  @relation(fields: [testament_id], references: [id])
+
+  @@map("wbcontent")
 }
+
+// model WContent {
+//   id         Int    @id @default(autoincrement())
+//   bible_id   Int
+//   chapter_id Int
+//   content_id Int
+//   verse      String
+//   text       String
+//   book       BibleName @relation(fields: [bible_id], references: [id])
+// }
+
+// model Testament {
+//   id         Int    @id @default(autoincrement())
+//   name   String
+//   books BibleName[]
+//    @@map("testaments")
+
+// }
+// model BibleName {
+//   id         Int    @id @default(autoincrement())
+//   name   String
+//   previous_id Int
+//   next_id Int
+//   testament_id Int
+//   chapters WContent[]
+//   testament Testament @relation(fields: [testament_id], references: [id])
+//    @@map("bible_name")
+// }
