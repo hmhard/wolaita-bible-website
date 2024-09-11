@@ -7,6 +7,7 @@ export async function GET(_req: Request,{params}: {params:{book:string, chapter:
     const posts = await prisma.wContent.findMany({
         include:{book:true},
         where: {bible_id: Number(book), chapter_id: Number(chapter)},
+        orderBy: {id: 'asc'}
      
     });
 
