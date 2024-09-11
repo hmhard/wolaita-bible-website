@@ -17,7 +17,8 @@ export async function GET(_req: Request, { params }: { params: { book: string } 
             book: true,
             bible_id:true,
             chapter_id:true
-        }
+        },
+      orderBy: {id: 'asc'}
       
         
 
